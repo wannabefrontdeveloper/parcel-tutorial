@@ -555,6 +555,7 @@ var render = function render() {
   counter.innerText = state.counter;
 };
 render();
+store.subscribe(render);
 var initialState = {
   toggle: false,
   counter: 0

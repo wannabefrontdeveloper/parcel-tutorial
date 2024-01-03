@@ -25,6 +25,7 @@ const render = () => {
   counter.innerText = state.counter;
 };
 render();
+store.subscribe(render);
 
 const initialState = {
   toggle: false,
