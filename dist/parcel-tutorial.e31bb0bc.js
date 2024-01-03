@@ -542,7 +542,6 @@ var decrease = function decrease() {
     type: DECREASE
   };
 };
-var store = (0, _redux.createStore)(reducer);
 var render = function render() {
   var state = store.getState(); //현재 상태를 불러옵니다.
   // 토글 처리
@@ -554,11 +553,21 @@ var render = function render() {
   //카운터 처리
   counter.innerText = state.counter;
 };
-render();
-store.subscribe(render);
 var initialState = {
   toggle: false,
   counter: 0
+};
+var store = (0, _redux.createStore)(reducer);
+store.subscribe(render);
+render();
+divToggle.onclick = function () {
+  store.dispatch(toggleSwitch());
+};
+btnIncrease.onclick = function () {
+  store.dispatch(increase(1));
+};
+btnDecrease.onclick = function () {
+  store.dispatch(decrease());
 };
 
 //state가 undefined일 때는 initialState를 기본값으로 사용

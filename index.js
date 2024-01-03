@@ -12,7 +12,7 @@ const DECREASE = "DECREASE";
 const toggleSwitch = () => ({ type: TOGGLE_SWITCH });
 const increase = (difference) => ({ type: INCREASE, difference });
 const decrease = () => ({ type: DECREASE });
-const store = createStore(reducer);
+
 const render = () => {
   const state = store.getState(); //현재 상태를 불러옵니다.
   // 토글 처리
@@ -24,12 +24,24 @@ const render = () => {
   //카운터 처리
   counter.innerText = state.counter;
 };
-render();
-store.subscribe(render);
 
 const initialState = {
   toggle: false,
   counter: 0,
+};
+const store = createStore(reducer);
+
+store.subscribe(render);
+render();
+
+divToggle.onclick = () => {
+  store.dispatch(toggleSwitch());
+};
+btnIncrease.onclick = () => {
+  store.dispatch(increase(1));
+};
+btnDecrease.onclick = () => {
+  store.dispatch(decrease());
 };
 
 //state가 undefined일 때는 initialState를 기본값으로 사용
